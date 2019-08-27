@@ -3,7 +3,8 @@ import { set, getProperties, getWithDefault } from '@ember/object';
 import validationError from 'ember-validators/utils/validation-error';
 import requireModule from 'ember-require-module';
 
-const moment = requireModule('ember-cli-moment-shim');
+// Use Embroider via `EMBROIDER=true ember build`
+const moment = requireModule(process.env.EMBROIDER ? 'ember-cli-moment-shim' : 'moment');
 
 /**
  * @class Date
