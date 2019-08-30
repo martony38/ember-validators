@@ -3,8 +3,11 @@ import { set, getProperties, getWithDefault } from '@ember/object';
 import validationError from 'ember-validators/utils/validation-error';
 import requireModule from 'ember-require-module';
 
-// Use Embroider via `EMBROIDER=true ember build`
-const moment = requireModule(process.env.EMBROIDER ? 'ember-cli-moment-shim' : 'moment');
+let moment = requireModule('moment');
+if (!moment) {
+  // Embroider may rename the moment package to ember-cli-moment-shim
+  moment = requireModule('ember-cli-moment-shim');
+}
 
 /**
  * @class Date
